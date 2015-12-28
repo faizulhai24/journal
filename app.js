@@ -34,11 +34,12 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-mongoose.connect('mongodb://localhost/journal1', function(err) {
+mongoose.connect('mongodb://faizulhai24:q1w2e3r4@ds053954.mongolab.com:53954/myjournal', function(err) {
     if (err) throw err;
     else console.log("Connected to the database");
 });
 
+//mongodb://localhost/journal1
 //mongodb://faizulhai24:q1w2e3r4@ds053954.mongolab.com:53954/myjournal
 // error handlers
 
