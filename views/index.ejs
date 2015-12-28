@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title>My Journal!</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+        <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+        <!-- Material Design fonts -->
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Bootstrap -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Bootstrap Material Design -->
+        <link href="../stylesheets/bootstrap-material-design.min.css" rel="stylesheet">
+        <link href="../stylesheets/ripples.min.css" rel="stylesheet">
+    </head>
+    <body ng-app="journal">
+                
+        <div class='row'>
+            <div class="col-md-6 col-md-offset-3">
+                <ui-view></ui-view>
+            </div>
+        </div>
+
+        <script type="text/ng-template" id="/home.html">
+                <div class = 'page-header'>
+                    <h1 class='txt-center'>My Journal</h1>
+                    <h4 class='txt-center'>Empty your heart. Privately!</h4>
+                </div>
+                <label>Search: <input type="search" ng-model="query"></label>
+                <div class="post-container">
+                <ul>
+                  <li ng-repeat="post in posts | filter:query">
+                      <span style="font-size:20px; margin-left:10px;">
+                          <span>
+                              <a href= "#/posts/{{post._id}}">{{post.title}}</a>
+                          </span>
+                      </span>
+                      <span class = "pull-right">
+                          {{post.date | date:format:mediumDate}}
+                      </span>
+                      <!--<span title= "Delete Post" class="glyphicon glyphicon-remove pull-right" ng-click="deletePost(post)"></span>
+                      -->
+                </ul>
+              </div>
+              <a href= '#/new'><h3> Add a new post! </h3></a>
+        </script>
+
+        <script type="text/ng-template" id="/posts.html">
+          <div class="page-header" ng-show='!editMode'>
+            <h3>
+              <span>
+                {{post.title}}
+              </span>
+            </h3>
+          </div>
+          <div class="page-header" ng-show='editMode'>
+            <h3>
+              <span>
+                <input type='text' ng-show="editMode" class="title-area" ng-model="post.title"><br>
+              </span>
+            </h3>
+          </div>
+          
+          <div class = "post-container" ng-show='!editMode'>
+          	{{post.body}}
+          </div>
+  			<textarea ng-show="editMode" class="note-area" ng-model="post.body"></textarea>
+
+          <button type="button" class="mybutton glyphicon glyphicon-pencil" ng-show='!editMode' ng-click='editMode = !editMode'></button>
+          <button type="button" class="mybutton glyphicon glyphicon-floppy-disk" ng-show='editMode' ng-click='editMode = !editMode'> </button>
+
+          <a href='#/home'><button type="button" class="mybutton glyphicon glyphicon-arrow-left"></button></a>
+          <button type="button" class="mybutton glyphicon glyphicon-trash pull-right"   ng-click="deletePost(post)"></button>
+        </script>
+
+        <script type="text/ng-template" id="/newpost.html">
+          <div class="page-header">
+            <h3>
+              <span>
+                <input type='text' placeholder="Title..." class="title-area" ng-model="post.title"><br>
+              </span>
+            </h3>
+          </div>
+          
+          <textarea placeholder="Body..." class="note-area" ng-model="post.body" required></textarea>
+          <button type="button" class="mybutton glyphicon glyphicon-floppy-disk" ng-click= 'addPost()'</button>
+          <a href='#/home' ng-click='goHome($event)'><button type="button" class="mybutton glyphicon glyphicon-arrow-left"></button></a>
+        </script>
+        <script src="/javascripts/angularApp.js"></script>
+    </body>
+</html>

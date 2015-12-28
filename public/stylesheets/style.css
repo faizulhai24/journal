@@ -1,0 +1,50 @@
+.txt-center{
+  text-align: center;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.glyphicon-thumbs-up{ 
+	cursor:pointer;
+}
+
+.glyphicon-thumbs-down{ 
+	cursor:pointer;
+}
+
+.glyphicon-remove{ 
+	cursor:pointer;
+}
+
+.post-container {
+    background: #DDDDDD;
+    height: 400px;
+    width: auto;
+    overflow: auto;
+    padding: 10px;
+}
+
+.note-area {
+    background: #FFFFFF;
+    height: 400px;
+    width: 100%;
+    padding: 10px 5px;
+}
+
+.title-area{
+  width: 100%;
+}
+.mybutton{
+  height:30px;
+  width:80px
+}
+
+ul{
+  padding: 0px !important;
+}
+
+li{
+  list-style: none;
+}
